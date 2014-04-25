@@ -1,0 +1,30 @@
+{
+  "name": "service-test",
+  "version": "0.0.1",
+  "description": "A test service",
+  "dependencies": {
+    "express": "~3.4.8",
+    "sockjs": "~0.3.8",
+    "mdns2":  "~2.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/max-b/service-test.git"
+  },
+  "keywords": [
+    "mesh",
+    "service",
+    "browser",
+    "list",
+    "peoples",
+    "open",
+    "network",
+    "sudo",
+    "mDNS"
+  ],
+  "author": {
+    "name": "Max B",
+    "email": "maxb@sudomesh.org"
+  },
+  "license": "AGPL-3.0"
+}
