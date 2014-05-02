@@ -36,8 +36,13 @@ var config = require('./config.js');
 var clients = [];
 var services = [];
 
-// advertise a http server on port 4321
-var ad = mdns.createAdvertisement(mdns.tcp('http'), 4321);
+// advertise a http server on port 80
+var txtRecord = {
+    sudomesh: true,
+    description: "Maxb OwnCloud Service",
+    type: "storage"
+};
+var ad = mdns.createAdvertisement(mdns.tcp('http'), 80, {txtRecord: txtRecord});
 ad.start();
 
 // watch all http servers
@@ -49,6 +54,3 @@ browser.on('serviceDown', function(service) {
   console.log("service down: ", service);
 });
 browser.start();
-
-// discover all available service types
-var all_the_types = mdns.browseThemAll(); // all_the_types is just another browser...
