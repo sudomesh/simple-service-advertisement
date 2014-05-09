@@ -30,9 +30,10 @@ var config = require('./config.js');
 
 // advertise a http server on port 80
 var txtRecord = {
-    sudomesh: true,
+    scope: config.scope,
     description: config.description,
     type: config.type,
+    region: config.region
 };
 var ad = mdns.createAdvertisement(mdns.tcp('http'), config.port, {txtRecord: txtRecord});
 ad.start();
