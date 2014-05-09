@@ -6,7 +6,7 @@ It is a simple node.js app that uses mDNS/DNS-SD to advertise a service.
 # Download #
 
 ```
-git clone https://github.com/sudomesh/simple-service-advertise.git
+git clone https://github.com/sudomesh/simple-service-advertisement.git
 ```
 
 # Install dependencies #
