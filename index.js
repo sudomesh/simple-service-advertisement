@@ -24,33 +24,16 @@
 */
 
 
-var util = require('util');
-var path = require('path');
-var http = require('http');
-var express = require('express');
-var sockjs = require('sockjs');
 var mdns = require('mdns2');
 
 var config = require('./config.js');
 
-var clients = [];
-var services = [];
-
 // advertise a http server on port 80
 var txtRecord = {
     sudomesh: true,
-    description: "Maxb OwnCloud Service",
-    type: "storage"
+    description: config.description,
+    type: config.type,
 };
-var ad = mdns.createAdvertisement(mdns.tcp('http'), 80, {txtRecord: txtRecord});
+var ad = mdns.createAdvertisement(mdns.tcp('http'), config.port, {txtRecord: txtRecord});
 ad.start();
 
-// watch all http servers
-var browser = mdns.createBrowser(mdns.tcp('http'));
-browser.on('serviceUp', function(service) {
-  console.log("service up: ", service);
-});
-browser.on('serviceDown', function(service) {
-  console.log("service down: ", service);
-});
-browser.start();

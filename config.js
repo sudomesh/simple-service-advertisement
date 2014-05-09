@@ -1,5 +1,8 @@
 
 module.exports = {
-    hostname: '10.0.99.126',
-    port: 80
+    description: 'Maxb OwnCloud Service',
+    type: 'storage',
+    region: 'oakland',
+    hostname: 'mini.local',
+    port: 8080
 };
