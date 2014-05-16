@@ -25,16 +25,32 @@
 
 
 var mdns = require('mdns2');
+var process = require('process');
+var _ = require('lodash');
 
-var config = require('./config.js');
+var configArray = require('./config.js');
 
-// advertise a http server on port 80
-var txtRecord = {
-    scope: config.scope,
-    description: config.description,
-    type: config.type,
-    region: config.region
-};
-var ad = mdns.createAdvertisement(mdns.tcp('http'), config.port, {txtRecord: txtRecord});
-ad.start();
+var adArray = [];
 
+_.each(configArray, function(config) {
+
+  // advertise a http server on port 80
+  var txtRecord = {
+      scope: config.scope,
+      description: config.description,
+      type: config.type,
+      region: config.region
+  };
+  var ad = mdns.createAdvertisement(mdns.tcp('http'), config.port, {name: config.name, txtRecord: txtRecord});
+  ad.start();
+  adArray.push(ad);
+});
+
+
+process.on('SIGINT', function() {
+  _.each(adArray, function(ad) {
+    ad.stop();
+  });
+  console.log('exiting');
+  process.exit();
+});
